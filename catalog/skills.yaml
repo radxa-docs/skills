@@ -2,7 +2,7 @@ version: 1
 
 repository:
   name: radxa-skills
-  description: Framework for Radxa SBC skills
+  description: Catalog of reusable skills for Radxa SBC users and agents
 
 structure:
   common_root: skills/common

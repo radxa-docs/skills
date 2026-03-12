@@ -20,6 +20,7 @@
 - 把核心流程写在 `SKILL.md`
 - 把长篇参考内容放到 `references/`
 - 把可复用命令流程写到 `scripts/`
+- 新增或移动 skill 后，同步更新 `catalog/skills.yaml`
 
 ## 安全要求
 

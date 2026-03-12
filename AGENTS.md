@@ -10,6 +10,8 @@
 4. 只打开目标 `SKILL.md`
 5. 只有在 `SKILL.md` 明确引用时，再读取 `references/` 或 `scripts/`
 
+`catalog/skills.yaml` 是发现已有 skill 的权威入口。如果某个 skill 存在于 `skills/` 中但未登记到 catalog，应视为仓库维护不完整并优先补齐。
+
 ## 目录规则
 
 - `skills/common/<skill-id>/`

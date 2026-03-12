@@ -1,8 +1,8 @@
 # Radxa Skills
 
-这是一个面向 Radxa SBC 用户与 agent 的 skills 仓库。
+这是一个面向 Radxa SBC 用户与 agent 的 skills 仓库，用于沉淀可被 agent 直接读取和复用的业务 skill。
 
-当前只搭建基础框架，不预置任何具体业务 skill。仓库的基本组织方式只有两类：
+仓库的基本组织方式分两类：
 
 - 通用 skill
 - 型号专属 skill
@@ -32,10 +32,15 @@
 - `skills/models/<board>/<skill-id>/`
   适合放某个具体型号专属的 skill
 
-## 当前状态
+## Agent 读取方式
 
-- 已完成仓库入口文件
-- 已完成技能索引框架
-- 已完成通用 / 型号专属两类目录
-- 已完成 skill 模板
-- 未添加任何具体 skill
+1. 先读取 `catalog/skills.yaml`
+2. 根据任务判断应使用通用 skill 还是型号专属 skill
+3. 找到目标 skill 后，只打开对应 `SKILL.md`
+4. 只有在 `SKILL.md` 明确引用时，再读取 `references/` 或 `scripts/`
+
+## 索引说明
+
+`catalog/skills.yaml` 是仓库的机器可读索引。agent 或工具应优先通过它发现 skill，而不是盲扫整个仓库。
+
+README 不维护具体 skill 清单。随着 skill 增长，实际可用项应以 `catalog/skills.yaml` 为准。
