@@ -1,3 +1,8 @@
+---
+name: radxa-doc
+description: Use when you need to query locally deployed Radxa product documentation to confirm hardware details, interfaces, or board-specific technical information before coding or troubleshooting.
+---
+
 # SKILL.md - 瑞莎产品文档查询
 
 ## 简介

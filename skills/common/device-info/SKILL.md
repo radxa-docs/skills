@@ -1,3 +1,8 @@
+---
+name: device-info
+description: Use when you need to detect the current hardware model and map a Radxa device to the correct product series before reading documentation or performing board-specific work.
+---
+
 # SKILL.md - 瑞莎硬件检测
 
 ## 简介

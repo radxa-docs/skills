@@ -1,3 +1,8 @@
+---
+name: mdmaker-deploy
+description: Use when you need to deploy, build, or update the local MDMaker-based Radxa documentation mirror under ~/.openclaw/MDMaker.
+---
+
 # SKILL.md - MDMaker 瑞莎文档本地部署
 
 ## 简介

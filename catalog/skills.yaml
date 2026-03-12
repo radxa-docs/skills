@@ -9,4 +9,22 @@ structure:
   model_root: skills/models
   model_pattern: skills/models/<board>/<skill-id>
 
-skills: []
+skills:
+  - id: device-info
+    type: common
+    name: Device Info
+    path: skills/common/device-info
+    description: Detect the current hardware model and map a device to the correct Radxa product series.
+    status: active
+  - id: mdmaker-deploy
+    type: common
+    name: MDMaker Deploy
+    path: skills/common/mdmaker-deploy
+    description: Deploy, build, and update the local MDMaker-based Radxa documentation mirror.
+    status: active
+  - id: radxa-doc
+    type: common
+    name: Radxa Doc
+    path: skills/common/radxa-doc
+    description: Query locally deployed Radxa documentation for hardware and board-specific information.
+    status: active
