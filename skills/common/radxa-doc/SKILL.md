@@ -69,6 +69,24 @@ find . -name "*env-setup*"
 ~/.openclaw/MDMaker/dist
 ```
 
+## 语言目录
+
+文档支持中英文两种语言：
+
+| 目录 | 说明 |
+|------|------|
+| `zh/` | 中文文档 |
+| `en/` | 英文文档 |
+
+使用方式：
+```bash
+# 中文文档
+ls ~/.openclaw/MDMaker/dist/zh/rock5/
+
+# 英文文档
+ls ~/.openclaw/MDMaker/dist/en/rock5/
+```
+
 ## 目录结构
 
 ### 产品系列（一级目录）
@@ -220,24 +238,23 @@ read(path="~/.openclaw/MDMaker/dist/rock5/rock5a/getting-started/rock5_rock5a_ge
 
 ## 硬件型号到产品系列映射
 
-检测到当前硬件后，根据型号匹配对应的瑞莎产品系列：
+检测到当前硬件后，根据型号匹配对应的瑞莎产品系列。支持 Device Tree / DMI / Hostname 三种检测方式的结果进行匹配：
 
 | 硬件型号关键词 | 对应瑞莎系列 | 示例 |
 |---------------|-------------|------|
-| ROCK 5, Rock 5, rock5, RK3588 | rock5 | ROCK 5A, ROCK 5B, ROCK 5C |
-| ROCK 4, Rock 4, rock4, RK3399 | rock4 | ROCK 4A, ROCK 4B, ROCK 4C+ |
-| ROCK 3, Rock 3, rock3, RK3568 | rock3 | ROCK 3A, ROCK 3B, ROCK 3C |
-| ROCK 2, Rock 2, rock2, RK3328 | rock2 | ROCK 2A, ROCK 2F |
-| Zero, zero, RK3528 | zero | Zero, Zero 2, Zero 3 |
-| X15, X2L, x15, x2l, Intel | x | X15, X2L |
+| ROCK 5, rock5, rock5b, rock5a, RK3588 | rock5 | ROCK 5A, ROCK 5B, ROCK 5C |
+| ROCK 4, rock4, rock4a, RK3399 | rock4 | ROCK 4A, ROCK 4B, ROCK 4C+ |
+| ROCK 3, rock3, rock3a, RK3568 | rock3 | ROCK 3A, ROCK 3B, ROCK 3C |
+| ROCK 2, rock2, rock2f, RK3328 | rock2 | ROCK 2A, ROCK 2F |
+| Zero, zero, zero3, zero2, RK3528 | zero | Zero, Zero 2, Zero 3 |
+| X15, X2L, Intel | x | X15, X2L |
 | E20C, E24C, E52C, E54C | e | E20C, E54C |
-| CM3, CM4, CM5, CM3I, CM3J | som | CM3, CM4, CM5, NX5 |
-| Orion, orion, O6, O6N | orion | Orion O6, Orion O6N |
+| CM3, CM4, CM5, CM3I, CM3J, cm5 | som | CM3, CM4, CM5, NX5 |
+| Orion, orion, O6, O6N, o6n | orion | Orion O6, Orion O6N |
 | Cubie, cubie, A5E, A7A | cubie | Cubie A5E, Cubie A7A |
 | Dragon, dragon, Q6A | dragon | Dragon Q6A |
 | SiRider, sirider, S1 | sirider | SiRider S1 |
-| Fogwise, fogwise, AIRbox | fogwise | AIRbox, AIRbox Q900 |
-| AICore, aicore, AX-M1, DX-M1 | aicore | AX-M1, DX-M1 |
+| AIRbox, aicore | aicore/fogwise | AIRbox, AICore |
 | NIO, nio, NIO12L | nio | NIO12L |
 
 ## 设备检测脚本
@@ -246,16 +263,24 @@ read(path="~/.openclaw/MDMaker/dist/rock5/rock5a/getting-started/rock5_rock5a_ge
 
 ```bash
 #!/bin/bash
+
+# 1. Device Tree（ARM 开发板最可靠）
 if [ -f /proc/device-tree/model ]; then
   tr -d '\0' < /proc/device-tree/model
 elif [ -f /sys/firmware/devicetree/base/model ]; then
   tr -d '\0' < /sys/firmware/devicetree/base/model
+# 2. DMI 信息
 elif [ -f /sys/class/dmi/id/product_name ]; then
   cat /sys/class/dmi/id/product_name
+# 3. Hostname（瑞莎官方镜像，hostname 就是设备名）
+elif command -v hostname &> /dev/null; then
+  hostname
 else
   grep "Model" /proc/cpuinfo
 fi
 ```
+
+> ⚠️ 瑞莎官方镜像的 hostname 通常就是设备名，如 `rock5b`、`zero3`、`cm5` 等。
 
 **注意**：如果是 x86 PC/服务器（非瑞莎硬件），则无需优先匹配系列，可以直接按用户描述查找。
 
