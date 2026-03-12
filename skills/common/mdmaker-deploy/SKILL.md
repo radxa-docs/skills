@@ -12,6 +12,15 @@
 - **构建输出**：`~/.openclaw/MDMaker/dist/`
 - **原始仓库**：`~/.openclaw/MDMaker/radxa-docs/`
 
+### 语言目录
+
+构建输出 `dist/` 下包含两种语言的文档：
+
+| 目录 | 说明 |
+|------|------|
+| `dist/zh/` | 中文文档 |
+| `dist/en/` | 英文文档 |
+
 ## 工具说明
 
 本项目包含两个主要工具：
@@ -100,10 +109,16 @@ python update_md_docs.py
 
 ```bash
 ls ~/.openclaw/MDMaker/dist/
+# 应该看到：zh en ...
+
+ls ~/.openclaw/MDMaker/dist/zh/
 # 应该看到：rock2 rock3 rock4 rock5 zero orion ...
 
-ls ~/.openclaw/MDMaker/dist/orion/o6n/hardware-use/
+ls ~/.openclaw/MDMaker/dist/zh/orion/o6n/hardware-use/
 # 应该看到硬件信息文档
+
+# 英文文档结构相同
+ls ~/.openclaw/MDMaker/dist/en/rock5/
 ```
 
 ## 注意事项
